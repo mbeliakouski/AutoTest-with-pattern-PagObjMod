@@ -12,6 +12,8 @@ class ProductPage(BasePage):
         self.should_be_name_book_add_to_basket()
         self.should_be_basket_total()
         self.should_be_cost_book()
+        self.should_not_be_success_message()
+        self.should_be_is_disappeared()
 
 
     def should_be_basket_button(self):
@@ -31,6 +33,14 @@ class ProductPage(BasePage):
         check_name = self.browser.find_element(*ProductPageLocators.NAME_BOOK_ADDET_TO_BASKET).text
         print(check_name)
         assert check_name == name_book, "Name book is wrong"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.NAME_BOOK_ADDET_TO_BASKET), \
+            "Success message is presented, but should not be"
+        
+    def should_be_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.NAME_BOOK_ADDET_TO_BASKET), \
+            "A message stating that the element is disappearing, but should not be"
 
     def should_be_name_book_add_to_basket(self):
         name_book_add_basket = self.browser.find_element(*ProductPageLocators.NAME_BOOK_ADDET_TO_BASKET).text
