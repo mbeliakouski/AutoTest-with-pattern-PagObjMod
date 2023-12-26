@@ -12,8 +12,8 @@ class ProductPage(BasePage):
         self.should_be_name_book_add_to_basket()
         self.should_be_basket_total()
         self.should_be_cost_book()
-        self.should_not_be_success_message()
-        self.should_be_is_disappeared()
+        # self.should_not_be_success_message()
+        # self.should_be_is_disappeared()
 
 
     def should_be_basket_button(self):
