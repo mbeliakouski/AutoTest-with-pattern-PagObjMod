@@ -24,6 +24,33 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.open()
     page.should_be_add_product_to_basket()
 
+
+@pytest.mark.negative
+class TestNegativeCase():
+    @pytest.mark.xfail(reason="fixing this bug right now")
+    def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_click_basket()
+        page.should_be_find_value()
+        page.should_not_be_success_message()
+
+    def test_guest_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    @pytest.mark.xfail
+    def test_message_disappeared_after_adding_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_click_basket()
+        page.should_be_find_value()
+        page.should_be_is_disappeared()
+
 @pytest.mark.login
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
