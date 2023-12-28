@@ -17,3 +17,7 @@ class ProductPageLocators():
     BASKET_TOTAL = (By.CSS_SELECTOR, '.alert-info .alertinner strong')
     COST_BOOK = (By.CSS_SELECTOR, 'p.price_color')
     
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
