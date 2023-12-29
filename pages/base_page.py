@@ -64,3 +64,7 @@ class BasePage():
     def should_be_go_to_basket(self):
         view_basket = self.browser.find_element(*MainPageLocators.VIEW_BASKET)
         view_basket.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"
