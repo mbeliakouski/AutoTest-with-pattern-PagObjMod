@@ -4,7 +4,7 @@ from pages.basket_page import BasketPage
 import pytest
 import time
 
-@pytest.mark.products
+@pytest.mark.need_review
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
@@ -19,8 +19,6 @@ import time
 
 
 def test_guest_can_add_product_to_basket(browser, link):
-    #link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear" # Add to basket
-    #link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019." # Data independent processing
     page = ProductPage(browser, link)
     page.open()
     page.should_be_add_product_to_basket()
@@ -52,14 +50,13 @@ class TestNegativeCase():
         page.should_be_find_value()
         page.should_be_is_disappeared()
 
-@pytest.mark.login
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.should_be_login_link()
 
-@pytest.mark.login
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -69,7 +66,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     loging_page = LoginPage(browser, browser.current_url)
     loging_page.should_be_login_page()
 
-@pytest.mark.basket
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -99,6 +96,7 @@ class TestUserAddToBasketFromProductPage():
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
         page = ProductPage(browser, link)
